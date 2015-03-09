@@ -6,11 +6,19 @@ using System.Web.Mvc;
 
 namespace eManager.Web.Controllers
 {
+//    public class HomeController : Controller
+//    {
+//        public string SayHello()
+//        {
+//            return "Hello, World!";
+//        }    
+//    }
+
     public class HomeController : Controller
     {
         public ActionResult Index()
         {
-            ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            //ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
         }
