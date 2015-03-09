@@ -6,13 +6,18 @@
 
     public class HomeController : Controller
     {
-        private IDepartmentDataSource db = new DepartmentDbcs();
+        private IDepartmentDataSource db;
+
+        public HomeController(IDepartmentDataSource db)
+        {
+            this.db = db;
+        }
 
         public ActionResult Index()
         {
             var allDepartments = db.Departments;
 
-            return View();
+            return View(allDepartments);
         }
 
         public ActionResult About()
