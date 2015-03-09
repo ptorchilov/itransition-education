@@ -1,4 +1,4 @@
-﻿namespace eManager.Web.DependenceResolution
+﻿namespace eManager.Web.DependencyResolution
 {
     using System;
     using System.Collections.Generic;
