@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace eManager.Web.Controllers
+﻿namespace eManager.Web.Controllers
 {
-//    public class HomeController : Controller
-//    {
-//        public string SayHello()
-//        {
-//            return "Hello, World!";
-//        }    
-//    }
+    using System.Web.Mvc;
+    using eManager.Domain;
+    using eManager.Web.Infrastructure;
 
     public class HomeController : Controller
     {
+        private IDepartmentDataSource db = new DepartmentDbcs();
+
         public ActionResult Index()
         {
-            //ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+            var allDepartments = db.Departments;
 
             return View();
         }
