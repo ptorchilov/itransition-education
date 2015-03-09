@@ -4,8 +4,8 @@
 
     public interface IDepartmentDataSource
     {
-        IQueryable<Employee> Employees { get; set; }
+        IQueryable<Employee> Employees { get; }
 
-        IQueryable<Department> Departments { get; set; }
+        IQueryable<Department> Departments { get; }
     }
 }
