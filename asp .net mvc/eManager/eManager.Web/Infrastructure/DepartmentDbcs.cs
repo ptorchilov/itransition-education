@@ -15,6 +15,11 @@
 
         public DbSet<Department> Departments { get; set; }
 
+        void IDepartmentDataSource.Save()
+        {
+            SaveChanges();
+        }
+
         IQueryable<Employee> IDepartmentDataSource.Employees
         {
             get { return Employees; }
