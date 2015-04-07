@@ -2,7 +2,7 @@
 {
     using System.Data.Entity;
     using System.Linq;
-    using eManager.Domain;
+    using Domain;
 
     public class DepartmentDbcs : DbContext, IDepartmentDataSource
     {

@@ -1,12 +1,11 @@
 ﻿namespace eManager.Web.Controllers
 {
     using System.Web.Mvc;
-    using eManager.Domain;
-    using eManager.Web.Infrastructure;
-
+    using Domain;
+    
     public class HomeController : Controller
     {
-        private IDepartmentDataSource db;
+        private readonly IDepartmentDataSource db;
 
         public HomeController(IDepartmentDataSource db)
         {

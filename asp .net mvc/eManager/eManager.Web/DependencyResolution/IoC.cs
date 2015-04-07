@@ -1,7 +1,7 @@
 ﻿namespace eManager.Web.DependencyResolution
 {
-    using eManager.Domain;
-    using eManager.Web.Infrastructure;
+    using Domain;
+    using Infrastructure;
     using StructureMap;
 
     public static class IoC
