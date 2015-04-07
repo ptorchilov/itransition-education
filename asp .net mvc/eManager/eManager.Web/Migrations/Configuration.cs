@@ -27,7 +27,7 @@ namespace eManager.Web.Migrations
 
             if (Membership.GetUser("sallen") == null)
             {
-                Membership.CreateUser("sallen", "123");
+                Membership.CreateUser("sallen", "hold08082008");
                 Roles.AddUserToRole("sallen", "Admin");
             }
         }
