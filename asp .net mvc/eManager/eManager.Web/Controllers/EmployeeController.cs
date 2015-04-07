@@ -5,6 +5,7 @@
     using Domain;
     using Models;
 
+    [Authorize(Roles = "Admin")]
     public class EmployeeController : Controller
     {
         private readonly IDepartmentDataSource db;
