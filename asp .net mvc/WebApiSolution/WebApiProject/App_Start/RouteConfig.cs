@@ -7,6 +7,8 @@ using System.Web.Routing;
 
 namespace WebApiProject
 {
+    using System.Web.Http;
+
     public class RouteConfig
     {
         public static void RegisterRoutes(RouteCollection routes)
