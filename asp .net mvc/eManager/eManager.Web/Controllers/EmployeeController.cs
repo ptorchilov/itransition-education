@@ -27,6 +27,7 @@
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(CreateEmployeeViewModel viewModel)
         {
             if (ModelState.IsValid)
