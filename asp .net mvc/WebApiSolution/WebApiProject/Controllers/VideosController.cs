@@ -7,24 +7,28 @@ using System.Web.Http;
 
 namespace WebApiProject.Controllers
 {
-    public class Video
-    {
-        public int ID { get; set; }
-        public string Title { get; set; }
-    }
+    using WebApiProject.Models;
 
     public class VideosController : ApiController
     {
-        // GET api/video
-        public IEnumerable<string> GetAllVideos()
+        private VideoDb db;
+
+        public VideosController()
         {
-            return new string[] { "value1", "value2" };
+            db = new VideoDb();
+            db.Configuration.ProxyCreationEnabled = false;
+        }
+
+        // GET api/video
+        public IEnumerable<Video> GetAllVideos()
+        {
+            return db.Videos;
         }
 
         // GET api/video/5
         public string Get(int id)
         {
-            return "value " + id.ToString();
+            return "value " + id;
         }
 
         // POST api/video
