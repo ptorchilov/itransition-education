@@ -73,6 +73,12 @@
                 });
             };
 
+            var deleteVideo = function(id) {
+                return $.ajax(videoApiUrl + "/" + id, {
+                    type: "DELETE"
+                });
+            };
+
             var addVideo = function(video) {
                 return $.ajax(videoApiUrl, {
                     type: "POST",
@@ -84,7 +90,8 @@
                 updateVideo: updateVideo,
                 getVideos: getVideos,
                 getVideo: getVideo,
-                addVideo: addVideo
+                addVideo: addVideo,
+                deleteVideo: deleteVideo
             };
 
         }());
@@ -149,10 +156,17 @@
                 return false;
             };
 
+            var deleteVideo = function() {
+                var id = getId(this);
+
+                videoServer.deleteVideo(id).done(refreshVideos);
+            };
+
             var wireEvents = function() {
                 $(document).on("click", ".editVideo", editVideo);
                 $(document).on("click", "#saveVideo", saveVideo);
                 $(document).on("click", "#createVideo", createVideo);
+                $(document).on("click", ".deleteVideo", deleteVideo);
             };
 
             var getId = function(element) {
