@@ -7,6 +7,12 @@ using System.Web.Http;
 
 namespace WebApiProject.Controllers
 {
+    public class Video
+    {
+        public int ID { get; set; }
+        public string Title { get; set; }
+    }
+
     public class VideosController : ApiController
     {
         // GET api/video
@@ -22,12 +28,13 @@ namespace WebApiProject.Controllers
         }
 
         // POST api/video
-        public void Post([FromBody]string value)
+        public Video Post(Video video)
         {
+            return video;
         }
 
         // PUT api/video/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, [FromBody] string value)
         {
         }
 

@@ -23,6 +23,8 @@ namespace WebApiProject
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AuthConfig.RegisterAuth();
+
+            ValueProviderFactories.Factories.Add(new JsonValueProviderFactory());
         }
     }
 }
