@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity.Infrastructure;
 using System.Net;
@@ -9,7 +8,7 @@ using WebApiProject.Models;
 
 namespace WebApiProject.Controllers
 {
-    
+    using System;
 
     public class VideosController : ApiController
     {
@@ -41,9 +40,21 @@ namespace WebApiProject.Controllers
         }
 
         // POST api/video
-        public Video Post(Video video)
+        public HttpResponseMessage PostVideo(Video video)
         {
-            return video;
+            if (ModelState.IsValid)
+            {
+                db.Videos.Add(video);
+                db.SaveChanges();
+
+                var response = Request.CreateResponse(HttpStatusCode.Created, video);
+
+                response.Headers.Location = new Uri(Url.Link("DefaultApi", new { id = video.Id }));
+
+                return response;
+            }
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
         // PUT api/video/5

@@ -6,6 +6,8 @@
     
 </div>
 
+<button id="createVideo">Create Video</button>
+
 <div id="videoEditOutput">
     
 </div>
@@ -71,16 +73,24 @@
                 });
             };
 
+            var addVideo = function(video) {
+                return $.ajax(videoApiUrl, {
+                    type: "POST",
+                    data: video
+                });
+            };
+
             return {
                 updateVideo: updateVideo,
                 getVideos: getVideos,
-                getVideo: getVideo
+                getVideo: getVideo,
+                addVideo: addVideo
             };
 
         }());
 
         (function() {
-            
+
             var templates = {};
 
             var compileTemplates = function() {
@@ -97,16 +107,22 @@
                 var output = templates.videoEdit(video);
 
                 $("#videoEditOutput").html(output);
-            }
+            };
 
             var refreshVideos = function() {
                 videoServer.getVideos().done(showAllVideos);
             };
 
-            var editVideo = function () {
+            var editVideo = function() {
                 var id = getId(this);
 
                 videoServer.getVideo(id).done(showVideoForEdit);
+            };
+
+            var createVideo = function() {
+                var video = { Id: 0, Title: "", Length: 0 };
+
+                showVideoForEdit(video);
             };
 
             var clearEdit = function() {
@@ -120,21 +136,30 @@
                     "Length": $("#length").val()
                 };
 
-                videoServer.updateVideo(video).done(refreshVideos, clearEdit);
+                var operation;
+                
+                if (video.Id != "0") {
+                    operation = videoServer.updateVideo(video);
+                } else {
+                    operation = videoServer.addVideo(video);
+                }
+
+                operation.done(refreshVideos, clearEdit);
 
                 return false;
             };
 
-            var wireEvents = function () {
+            var wireEvents = function() {
                 $(document).on("click", ".editVideo", editVideo);
                 $(document).on("click", "#saveVideo", saveVideo);
+                $(document).on("click", "#createVideo", createVideo);
             };
 
             var getId = function(element) {
                 return $(element).parents("tr").attr("data-id");
             };
 
-            $(function () {
+            $(function() {
                 wireEvents();
                 compileTemplates();
                 refreshVideos();
