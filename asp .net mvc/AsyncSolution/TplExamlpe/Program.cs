@@ -2,19 +2,20 @@
 {
     using System;
     using System.Threading;
+    using System.Threading.Tasks;
 
     public class Program
     {
         public static void Main(string[] args)
         {
-            var result = SlowOpernation();
+            var task = Task.Factory.StartNew<int>(SlowOpernation);
 
             for (var i = 0; i < 10; i++)
             {
                 Console.WriteLine(i);
             }
 
-            Console.WriteLine("Slow operation result: {0}", result);
+            Console.WriteLine("Slow operation result: {0}", task.Result);
             Console.WriteLine("Main complete on {0}", 
                 Thread.CurrentThread.ManagedThreadId);
         }
