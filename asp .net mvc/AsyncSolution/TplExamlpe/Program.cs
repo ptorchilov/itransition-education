@@ -3,12 +3,12 @@
     using System;
     using System.Threading;
     using System.Threading.Tasks;
-
+    
     public class Program
     {
         public static void Main(string[] args)
         {
-            var task = Task.Factory.StartNew<int>(SlowOpernation);
+            var task = SlowOpernationAsync();
 
             for (var i = 0; i < 10; i++)
             {
@@ -20,11 +20,11 @@
                 Thread.CurrentThread.ManagedThreadId);
         }
 
-        private static int SlowOpernation()
+        static async Task<int> SlowOpernationAsync()
         {
             Console.WriteLine("Slow operation started on {0}",
                 Thread.CurrentThread.ManagedThreadId);
-            Thread.Sleep(2000);
+            await TaskEx.Delay(2000);
             Console.WriteLine("Slow operation complete on {0}",
                 Thread.CurrentThread.ManagedThreadId);
 
