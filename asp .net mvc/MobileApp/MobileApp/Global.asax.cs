@@ -33,13 +33,13 @@ namespace MobileApp
             DisplayModeProvider.Instance.Modes.Insert(0,
                 new DefaultDisplayMode("Mobile")
                     {
-                        ContextCondition = ctx => ctx.Request.UserAgent.Contains("iPad")
+                        ContextCondition = ctx => ctx.GetOverriddenUserAgent().Contains("iPad")
                     });
 
             DisplayModeProvider.Instance.Modes.Insert(0,
                 new DefaultDisplayMode("Silk")
                 {
-                    ContextCondition = ctx => ctx.Request.UserAgent.Contains("Silk/")
+                    ContextCondition = ctx => ctx.GetOverriddenUserAgent().Contains("Silk")
                 });
         }
     }

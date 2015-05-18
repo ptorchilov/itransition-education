@@ -13,6 +13,9 @@
 </head>
 <body>
     <div>
+        <div>Regular user agent: @ViewContext.HttpContext.Request.UserAgent</div>
+        <div>Override user agent: @Server.UrlDecode(ViewContext.HttpContext.GetOverriddenUserAgent())</div>
+
         <table>
             <tr>
                 <th>Name</th>
@@ -30,6 +33,14 @@
                 </tr>
             }
         </table>
+        
+        @using (Html.BeginForm())
+        {
+            <button name="value" value="">Default view</button>
+            <button name="value" value="mobile">Mobile view</button>
+            <button name="value" value="desktop">Desktop view</button>
+            <button name="value" value="silk">Silk view</button>
+        }
     </div>
 </body>
 </html>
