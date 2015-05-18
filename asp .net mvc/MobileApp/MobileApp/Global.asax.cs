@@ -9,6 +9,8 @@ using System.Web.Routing;
 
 namespace MobileApp
 {
+    using System.Web.WebPages;
+
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
 
@@ -18,10 +20,27 @@ namespace MobileApp
         {
             AreaRegistration.RegisterAllAreas();
 
+            AddDisplayModes();
+
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+        }
+
+        private void AddDisplayModes()
+        {
+            DisplayModeProvider.Instance.Modes.Insert(0,
+                new DefaultDisplayMode("Mobile")
+                    {
+                        ContextCondition = ctx => ctx.Request.UserAgent.Contains("iPad")
+                    });
+
+            DisplayModeProvider.Instance.Modes.Insert(0,
+                new DefaultDisplayMode("Silk")
+                {
+                    ContextCondition = ctx => ctx.Request.UserAgent.Contains("Silk/")
+                });
         }
     }
 }

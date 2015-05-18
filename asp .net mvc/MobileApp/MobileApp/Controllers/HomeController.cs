@@ -6,6 +6,8 @@ using System.Web.Mvc;
 
 namespace MobileApp.Controllers
 {
+    using System.Web.WebPages;
+
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -13,6 +15,13 @@ namespace MobileApp.Controllers
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
 
             return View();
+        }
+
+        public ActionResult DisplayModes()
+        {
+            var model = DisplayModeProvider.Instance.Modes;
+
+            return View(model);
         }
 
         public ActionResult About()
